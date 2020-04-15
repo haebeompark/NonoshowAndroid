@@ -32,12 +32,8 @@
                 android:inputType="number"
                 android:maxLength="12"
                 android:singleLine="true"
-                android:textCursorDrawable="@drawable/text_cursor" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:imeOptions="actionSearch"/> <!-- 액티비티에서 OnEditorActionLister 추가 -->
 
             <Space
                 android:layout_width="match_parent"

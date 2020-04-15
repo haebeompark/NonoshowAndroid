@@ -20,14 +20,12 @@ import kotlin.random.Random
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var textView: TextView
     private lateinit var edittext: EditText
     private lateinit var circleImageButton : ImageButton
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
-        val textView : TextView = getView()!!.findViewById(R.id.textView)
         val edittext : EditText = getView()!!.findViewById(R.id.Text_search)
         val circleImageButton : Button = getView()!!.findViewById(R.id.circleImageButton)
 
@@ -42,7 +40,7 @@ class HomeFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var phoneNum = s.toString()
-                textView.text = phoneNum
+                /*textView.text = phoneNum*/
 
                 if(phoneNum.length > 10){
                     circleImageButton.text = search(phoneNum)
