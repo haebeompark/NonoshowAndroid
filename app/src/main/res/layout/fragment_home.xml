@@ -21,15 +21,18 @@
 
             <EditText
                 android:id="@+id/Text_search"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorLightGray"
+                android:drawableLeft="@drawable/drawable_customize"
                 android:ems="10"
                 android:hint="@string/text_search_hint"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:layout_gravity="center"
                 android:maxLength="12"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/text_cursor" />
 
             <TextView
                 android:id="@+id/textView"
