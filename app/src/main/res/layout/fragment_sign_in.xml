@@ -20,7 +20,7 @@
 
     <Button
         android:id="@+id/button_signIn"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/colorLogo"
@@ -34,7 +34,7 @@
 
     <Button
         android:id="@+id/button_signUp"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/colorLogo"
@@ -49,26 +49,27 @@
 
     <EditText
         android:id="@+id/editText_ID"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edit_text_customize_white"
         android:ems="10"
         android:hint="@string/text_ID"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:maxLength="18"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:singleLine="true"
         android:textCursorDrawable="@drawable/text_cursor"
         android:textSize="25sp"
-        android:maxLength="18"
         app:layout_constraintBottom_toTopOf="@+id/editText_PW"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText_PW"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
         android:autofillHints=""

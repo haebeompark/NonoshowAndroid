@@ -58,7 +58,11 @@ class SignInFragment : Fragment() {
 Log.i("ID",MyApplication.ID)
             MyApplication.PW = textPW.text.toString()
 Log.i("PW",MyApplication.PW)
-            it.findNavController().navigate(R.id.nav_search_by_phoneNum)    /*fragment 변경*/
+            it.findNavController().navigate(R.id.nav_search_by_phoneNum)    /*fragment 전환*/
+        }
+        signUp.setOnClickListener{
+            MyApplication.isLogined = false
+            it.findNavController().navigate(R.id.nav_signUp)
         }
 
 
