@@ -9,7 +9,7 @@
         android:id="@+id/nav_search_by_phoneNum"
         android:name="com.example.nonoshow.ui.search.SearchFragment"
         android:label="@string/menu_search_by_phoneNum"
-        tools:layout="@layout/fragment_search_by_phoneNum" />
+        tools:layout="@layout/fragment_search_by_phone_num" />
 
     <fragment
         android:id="@+id/nav_signIn"
@@ -25,8 +25,8 @@
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.nonoshow.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:name="com.example.nonoshow.ui.signUp.SignUpFragment"
+        android:label="@string/menu_signUp"
+        tools:layout="@layout/fragment_sign_up" />
 
 </navigation>
