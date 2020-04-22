@@ -1,4 +1,4 @@
-package com.example.nonoshow.ui.home
+package com.example.nonoshow.ui.search
 
 import android.os.Bundle
 import android.text.Editable
@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.nonoshow.R
 import kotlin.random.Random
 
-class HomeFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var searchViewModel: SearchViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
@@ -73,8 +73,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        searchViewModel =
+            ViewModelProviders.of(this).get(SearchViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_search_by_phone_num, container, false)
         return root
     }
