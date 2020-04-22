@@ -8,29 +8,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.nonoshow.R
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var edittext: EditText
-    private lateinit var circleImageButton : ImageButton
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
         val edittext : EditText = getView()!!.findViewById(R.id.Text_search)
         val circleImageButton : Button = getView()!!.findViewById(R.id.circleImageButton)
+        val bookText : TextView = getView()!!.findViewById(R.id.text_book)
+        val book = "원을 터치해서 예약기록"
+        val unBook ="원을 터치해서 예약기록취소"
+        var isBooked = false
+        val title = "핸드폰번호로 검색"
+
+        (activity as AppCompatActivity).supportActionBar?.title = title
 
         circleImageButton.textSize = 25f
-        circleImageButton.text = "X%"
+        circleImageButton.text = ""
+
+        /******************************************************/
         edittext.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -44,9 +48,25 @@ class HomeFragment : Fragment() {
 
                 if(phoneNum.length > 10){
                     circleImageButton.text = search(phoneNum)
+                    bookText.text=book
+                    isBooked = false
                 }
             }
         })
+        /******************************************************/
+        circleImageButton.setOnClickListener {
+            /*원이 클릭이 됐을경우*/
+            if(isBooked) {
+                bookText.text = unBook
+                isBooked = false
+                /*텍스트, 원의 색 변경해보기*/
+            }
+            else if(!isBooked){
+                bookText.text = book //보이는 text 변경
+                isBooked = true //toggle 을 위한 저장
+                /*텍스트, 원의 색 변경해보기*/
+            }
+        }
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +75,7 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_search_by_phone_num, container, false)
         return root
     }
 

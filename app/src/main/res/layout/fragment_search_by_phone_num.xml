@@ -56,6 +56,15 @@
                 android:background="@drawable/circle"
                 android:textAlignment="center" />
 
+            <TextView
+                android:id="@+id/text_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+
         </LinearLayout>
     </ScrollView>
 

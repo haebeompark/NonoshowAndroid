@@ -2,18 +2,25 @@
     <string name="app_name">NoNoShow</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">내 닉네임</string>
+    <string name="nav_header_subtitle">subtitle</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_search_by_phoneNum">핸드폰번호로 검색</string>
+    <string name="menu_signIn">로그인 / 회원가입</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
     <string name="text_search_hint">핸드폰번호로 검색</string>
-    <string name="text_noShowDes">노쇼확률</string>
+    <string name="text_noShowDes">신뢰도</string>
+    <string name="text_management">관리</string>
+    <string name="text_ID">아이디</string>
+    <string name="text_PW">패스워드</string>
+    <string name="logoimage">LOGOImage</string>
+    <string name="text_login">로그인</string>
+    <string name="text_SignUp">회원가입</string>
+    <string name="text_autoLogin">로그인 상태 유지</string>
 </resources>
