@@ -1,12 +1,10 @@
 package com.example.nonoshow.ui.signIn
 
-import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -15,7 +13,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.nonoshow.MainActivity
 import com.example.nonoshow.MyApplication
@@ -24,6 +21,7 @@ import com.example.nonoshow.R
 class SignInFragment : Fragment() {
 
     private lateinit var signInViewModel: SignInViewModel
+    private val LOGIN : Int = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         MyApplication.isLogined = false
@@ -58,6 +56,9 @@ class SignInFragment : Fragment() {
 Log.i("ID",MyApplication.ID)
             MyApplication.PW = textPW.text.toString()
 Log.i("PW",MyApplication.PW)
+
+            MainActivity.changeState(MyApplication.ID, LOGIN)/*로그인하며 닉네임설정*/
+
             it.findNavController().navigate(R.id.nav_search_by_phoneNum)    /*fragment 전환*/
         }
         signUp.setOnClickListener{

@@ -1,6 +1,6 @@
 package com.example.nonoshow
 
-import android.content.ClipData
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.findNavController
@@ -13,11 +13,11 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
 Log.i("set","created")
         super.onCreate(savedInstanceState)
@@ -41,6 +41,12 @@ Log.i("set","created")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        nickname = findViewById(R.id.menuNickNameText)
+        signOutText = findViewById(R.id.signOutText)
+        signOutText!!.visibility = View.INVISIBLE
+        signOutText!!.setOnClickListener{
+            changeState("logout",LOGOUT)
+        }
         return true
     }
 
@@ -56,8 +62,31 @@ Log.i("set","restart!")
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
+        nickname!!.setOnClickListener{
+            if(!MyApplication.isLogined)
+                navController.navigate(R.id.nav_signIn)
+        }
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-
+    companion object {
+        private const val LOGIN : Int = 0
+        const val LOGOUT : Int = 1
+        var nickname : TextView? = null
+        @SuppressLint("StaticFieldLeak")
+        var signOutText : TextView? = null
+        fun changeState(data: String, index: Int) {
+            when(index){
+                LOGIN-> {
+                    var id = data
+                    nickname!!.text = id
+                    signOutText!!.visibility = View.VISIBLE
+                }
+                LOGOUT->{
+                    MyApplication.logout()
+                    nickname!!.text = "로그인 해 주세요"
+                    signOutText!!.visibility =View.INVISIBLE
+                }
+            }
+        }
+    }
 }
