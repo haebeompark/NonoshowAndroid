@@ -10,6 +10,7 @@
     <string name="menu_signUp">회원가입</string>
 
     <string name="text_search_hint">핸드폰번호로 검색</string>
+    <string name="text_search_with_name">매장이름으로 검색</string>
     <string name="text_noShowDes">신뢰도</string>
     <string name="text_management">관리</string>
     <string name="text_ID">아이디</string>

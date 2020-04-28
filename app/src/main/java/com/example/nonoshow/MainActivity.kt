@@ -14,7 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TableRow
 import android.widget.TextView
+import android.widget.ImageButton
+import kotlinx.android.synthetic.main.fragment_slideshow.*
+import android.R.attr.*
+import android.content.Context
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -37,7 +45,10 @@ Log.i("set","created")
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        contextForList = this
     }
+    @SuppressLint("WrongViewCast")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -69,24 +80,27 @@ Log.i("set","restart!")
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
     companion object {
-        private const val LOGIN : Int = 0
-        const val LOGOUT : Int = 1
-        var nickname : TextView? = null
+        private const val LOGIN: Int = 0
+        const val LOGOUT: Int = 1
+        var nickname: TextView? = null
         @SuppressLint("StaticFieldLeak")
-        var signOutText : TextView? = null
+        var signOutText: TextView? = null
+        var contextForList: Context? = null
+
         fun changeState(data: String, index: Int) {
-            when(index){
-                LOGIN-> {
+            when (index) {
+                LOGIN -> {
                     var id = data
                     nickname!!.text = id
                     signOutText!!.visibility = View.VISIBLE
                 }
-                LOGOUT->{
+                LOGOUT -> {
                     MyApplication.logout()
                     nickname!!.text = "로그인 해 주세요"
-                    signOutText!!.visibility =View.INVISIBLE
+                    signOutText!!.visibility = View.INVISIBLE
                 }
             }
         }
     }
+
 }

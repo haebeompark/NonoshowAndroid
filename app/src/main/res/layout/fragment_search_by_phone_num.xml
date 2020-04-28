@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/colorLightGray"
-                android:drawableLeft="@drawable/drawable_customize"
+                android:drawableStart="@drawable/drawable_customize"
                 android:ems="10"
                 android:hint="@string/text_search_hint"
                 android:importantForAutofill="no"
