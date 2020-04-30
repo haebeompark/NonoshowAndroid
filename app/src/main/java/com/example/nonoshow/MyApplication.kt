@@ -1,20 +1,23 @@
 package com.example.nonoshow
 
 import android.app.Application
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.CalendarMode
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import java.util.*
 
 class MyApplication : Application() { /*하나의 인스턴스를 가지는 클래스*/
     companion object {
-        val LINEAR_LAYOUT = 0
-        val TEXT_VIEW = 1
-        val IMAGE_BUTTON = 2
-        val LINE = 3
+        val LINEAR_LAYOUT = 1004
+        val TEXT_VIEW = 1015
+        val IMAGE_BUTTON = 1026
+        val LINE = 1037
+        val CALENDAR = 1048
+        val SPINNER = 1059
         fun logout() {
             ID = "default"
             PW = "default"
@@ -122,6 +125,37 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                                 backGroundColor
                             )
                         )
+                    } as T
+                }
+                CALENDAR -> {
+                    result = MaterialCalendarView(context).apply{
+                        state().edit()
+                            .setFirstDayOfWeek(Calendar.SUNDAY)
+                            .setMinimumDate(CalendarDay.from(2017, 0, 1))
+                            .setMaximumDate(CalendarDay.from(2030, 11, 31))
+                            .setCalendarDisplayMode(CalendarMode.MONTHS)
+                            .commit()
+                    } as T
+                }
+                SPINNER -> {
+                    val data : Array<String> = context.getResources().getStringArray(R.array.time_array)
+                    val adapter : ArrayAdapter<String>  = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,data)
+
+                    result = Spinner(context).apply{
+                        layoutParams = LinearLayout.LayoutParams(
+                            width,
+                            height
+                        ).apply {
+                            if (weight != 0f)
+                                this.weight = weight
+                        }
+                        ListView(context).apply{
+                            layoutParams = LinearLayout.LayoutParams(
+                                width,
+                                height
+                            )
+                        }
+                        setAdapter(adapter)
                     } as T
                 }
             }
