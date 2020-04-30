@@ -6,7 +6,7 @@
 
     <string name="menu_search_by_phoneNum">핸드폰번호로 검색</string>
     <string name="menu_signIn">로그인/회원가입</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_booking_main">매장검색 / 예약</string>
     <string name="menu_signUp">회원가입</string>
 
     <string name="text_search_hint">핸드폰번호로 검색</string>
@@ -25,4 +25,5 @@
     <string name="phoneNum">핸드폰번호</string>
     <string name="PW_check">비밀번호확인</string>
     <string name="signout">로그아웃</string>
+    <string name="text_load_more">load more</string>
 </resources>

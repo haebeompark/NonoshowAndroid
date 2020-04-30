@@ -14,15 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TableRow
 import android.widget.TextView
-import android.widget.ImageButton
-import kotlinx.android.synthetic.main.fragment_slideshow.*
-import android.R.attr.*
 import android.content.Context
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -48,7 +41,6 @@ Log.i("set","created")
 
         contextForList = this
     }
-    @SuppressLint("WrongViewCast")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -82,16 +74,17 @@ Log.i("set","restart!")
     companion object {
         private const val LOGIN: Int = 0
         const val LOGOUT: Int = 1
+        @SuppressLint("StaticFieldLeak")
         var nickname: TextView? = null
         @SuppressLint("StaticFieldLeak")
         var signOutText: TextView? = null
+        @SuppressLint("StaticFieldLeak")
         var contextForList: Context? = null
 
         fun changeState(data: String, index: Int) {
             when (index) {
                 LOGIN -> {
-                    var id = data
-                    nickname!!.text = id
+                    nickname!!.text = data
                     signOutText!!.visibility = View.VISIBLE
                 }
                 LOGOUT -> {

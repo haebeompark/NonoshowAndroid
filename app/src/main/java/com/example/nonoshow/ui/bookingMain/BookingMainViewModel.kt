@@ -1,10 +1,10 @@
-package com.example.nonoshow.ui.slideshow
+package com.example.nonoshow.ui.bookingMain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class BookingMainViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is slideshow Fragment"

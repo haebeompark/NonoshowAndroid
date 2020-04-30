@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_search_by_phoneNum">
+    app:startDestination="@+id/nav_signIn">
 
     <fragment
         android:id="@+id/nav_search_by_phoneNum"
@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.nonoshow.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.nonoshow.ui.bookingMain.BookingMainFragment"
+        android:label="@string/menu_booking_main"
+        tools:layout="@layout/fragment_booking_main" />
 
     <fragment
         android:id="@+id/nav_signUp"

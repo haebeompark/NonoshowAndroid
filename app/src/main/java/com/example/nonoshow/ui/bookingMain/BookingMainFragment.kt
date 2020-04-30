@@ -1,33 +1,35 @@
-package com.example.nonoshow.ui.slideshow
+package com.example.nonoshow.ui.bookingMain
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.TableRow
 import android.widget.TextView
 import android.widget.LinearLayout
 import android.widget.FrameLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.nonoshow.MainActivity
 import com.example.nonoshow.R
-import kotlinx.android.synthetic.main.fragment_slideshow.*
+import kotlinx.android.synthetic.main.fragment_booking_main.*
 
-class SlideshowFragment : Fragment() {
+class BookingMainFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var bookingMainViewModel: BookingMainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createABlock(LinearLayoutBookingMain)
-        val textView11 = TextView(MainActivity.contextForList)
-        textView11.text = "rmfwk"
-        LinearLayoutBookingMain.addView(textView11)
+        createBlocks(LinearLayoutBookingMain)
+        val loadMore = TextView(MainActivity.contextForList)
+        loadMore.text = resources.getString(R.string.text_load_more)  /*load more*/
+        loadMore.setOnClickListener{
+            /*뷰 블럭을 더 생성*/
+            createBlocks(LinearLayoutBookingMain)
+        }
+        LinearLayoutBookingManager.addView(loadMore)
     }
 
     override fun onCreateView(
@@ -35,9 +37,9 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
-            ViewModelProviders.of(this).get(SlideshowViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
+        bookingMainViewModel =
+            ViewModelProviders.of(this).get(BookingMainViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_booking_main, container, false)
 
         return root
     }
@@ -47,7 +49,10 @@ class SlideshowFragment : Fragment() {
     scrollView > linearLayout > tableRow > [하나의 정보(block)]
     linearLayout을 이름으로 가져와서 tableRow를 임의의 수 생성하도록 해야함 -> 생성하는 함수가 필요
      *******************************************************************************************/
-    public fun createABlock(LL : LinearLayout = LinearLayoutBookingMain): FrameLayout {
+    private fun createBlocks(LL : LinearLayout = LinearLayoutBookingMain,numberOfBlock : Int = 10) {
+        for (i in 1.. numberOfBlock){createABlock(LL)}
+    }
+    private fun createABlock(LL : LinearLayout = LinearLayoutBookingMain): FrameLayout {
         val context = MainActivity.contextForList!!
         val tableRow : FrameLayout
         tableRow = FrameLayout(context).apply {
@@ -55,7 +60,7 @@ class SlideshowFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 500
             )
-            var param = layoutParams as ViewGroup.MarginLayoutParams    /*패딩설정*/
+            val param = layoutParams as ViewGroup.MarginLayoutParams    /*패딩설정*/
             param.setMargins(24, 10, 24, 10)
             layoutParams = param                                        /*패딩설정 끝*/
             setBackgroundColor(
