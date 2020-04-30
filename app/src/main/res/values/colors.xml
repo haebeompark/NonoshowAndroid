@@ -8,5 +8,6 @@
     <color name="colorLightGray">#E7E6E6</color>
     <color name="colorLogo">#27CC9E</color>
     <color name="colorGray207">#d0cfcf</color>
+    <color name="colorGray140">#8c8c8c</color>
 </resources>
 <!--android:id="@+id/colorPrimary"-->
