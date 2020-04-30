@@ -11,6 +11,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.nonoshow.MainActivity
+import com.example.nonoshow.MyApplication
 import com.example.nonoshow.MyApplication.Companion.CALENDAR
 import com.example.nonoshow.MyApplication.Companion.IMAGE_BUTTON
 import com.example.nonoshow.MyApplication.Companion.LINE
@@ -90,7 +91,7 @@ class BookingMainFragment : Fragment() {
             width = 0,
             height = ViewGroup.LayoutParams.WRAP_CONTENT,
             weight = .33f,
-            imageId = R.drawable.logo_transparent
+            imageId = R.drawable.test_photo_1
         )
         val textGroup : LinearLayout? = createView(
             type = LINEAR_LAYOUT,
@@ -138,22 +139,104 @@ class BookingMainFragment : Fragment() {
                 backGroundColor = R.color.colorGray207)) /*가로선*/
             info.addView(createView<ImageButton>(  /*사진 추가*/
                 type = IMAGE_BUTTON,
-                imageId = R.drawable.logo_transparent
+                imageId = R.drawable.test_photo_1
             ))
             info.addView(createView<View>(
                 type = LINE,
                 directionHorizontal = true,
-                backGroundColor = R.color.colorGray207)) /*가로선*/
+                backGroundColor = R.color.colorPrimaryDark)) /*가로선*/
+            info.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = "예약날짜 선택",
+                backGroundColor = R.color.colorPrimary,
+                textSize = 16f,
+                width =  ViewGroup.LayoutParams.WRAP_CONTENT,
+                height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                marginLeft = 64,
+                marginTop = 32,
+                textColor = R.color.colorWhite
+            ))
             info.addView(createView<MaterialCalendarView>(
                 type = CALENDAR
             ))
             info.addView(createView<View>(
                 type = LINE,
                 directionHorizontal = true,
-                backGroundColor = R.color.colorPrimaryDark)) /*가로선*/
-            info.addView(createView<Spinner>(
-                type = SPINNER
+                backGroundColor = R.color.colorLightGray)) /*가로선*/
+            info.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = "예약시각 선택",
+                backGroundColor = R.color.colorPrimary,
+                textSize = 16f,
+                width =  ViewGroup.LayoutParams.WRAP_CONTENT,
+                height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                marginLeft = 64,
+                marginTop = 32,
+                textColor = R.color.colorWhite
             ))
+            info.addView(createView<Spinner>(
+                type = SPINNER,
+                list = R.array.time_array
+            ))
+            info.addView(createView<View>(
+                type = LINE,
+                directionHorizontal = true,
+                backGroundColor = R.color.colorLightGray)) /*가로선*/
+            info.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = "예약인원 선택",
+                backGroundColor = R.color.colorPrimary,
+                textSize = 16f,
+                width =  ViewGroup.LayoutParams.WRAP_CONTENT,
+                height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                marginLeft = 64,
+                marginTop = 32,
+                textColor = R.color.colorWhite
+            ))
+
+            /****************************************/
+            val textGroup :LinearLayout? = createView(
+                type = LINEAR_LAYOUT,
+                directionHorizontal = true  /*가로*/
+            )
+            textGroup!!.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = "예약인원 : ",
+                textSize = 24f,
+                textColor = R.color.colorPrimary,
+                width = 0,
+                weight = .5f,
+                marginLeft = 40,
+                marginTop = 8
+            ))
+            textGroup.addView(createView<Spinner>(
+                type = SPINNER,
+                list = R.array.number_of_people,
+                width =  0,
+                height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                weight = .5f
+            ))
+            /***************************************/
+            info.addView(textGroup)
+            info.addView(createView<View>(
+                type = LINE,
+                directionHorizontal = true,
+                backGroundColor = R.color.colorLightGray)) /*가로선*/
+            info.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = when(MyApplication.isLogined){
+                    true->"예약하기"
+                    false->"비회원 예약하기"
+                },
+                textSize = 20f,
+                marginHorizontal = 256,
+                marginVertical = 64,
+                background = R.drawable.edit_text_customize_primary,
+                textAlignCenter = true,
+                textColor = R.color.colorPrimary,
+                height = 300
+            ))
+
             block.addView(info) /*블록에 정보를 붙임*/
             tableRow.setOnClickListener{/*위쪽 테이블을 눌렀을경우 INFO 창 제거를 위해*/
                 settingTableRowClickListener(block, tableRow)/*INFO 가 제거된 테이블의 setOnClickListener 초기화를 위해*/
@@ -161,10 +244,6 @@ class BookingMainFragment : Fragment() {
                 selected = null
                 selectedInfo = null
             }
-            /*
-            tableRow.addView() 예약날짜 선택하는 놈
-            tableRow.addView() 인원 선택
-            */
             selected = block /* 선택 */
             selectedInfo = info
         }

@@ -1,6 +1,7 @@
 package com.example.nonoshow
 
 import android.app.Application
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -47,8 +48,10 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
             backGroundColor: Int = R.color.colorWhite,
             weight: Float = 0f,
             imageId: Int = R.color.colorWhite,
-            background: Int = R.color.colorWhite,
-            textColor: Int = android.R.color.black
+            background: Int = backGroundColor,
+            textColor: Int = android.R.color.black,
+            list : Int = R.array.time_array,
+            textAlignCenter : Boolean = false
         ): T? {
             val context = MainActivity.contextForList!! /*context 문제*/
             var result: T = View(context) as T
@@ -94,8 +97,13 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                                 textColor
                             )
                         )
+                        if(textAlignCenter){
+                            textAlignment = View.TEXT_ALIGNMENT_CENTER
+                            gravity = Gravity.CENTER
+                        }
                         val param = layoutParams as ViewGroup.MarginLayoutParams    /*마진설정*/
                         param.setMargins(marginLeft, marginTop, marginRight, marginBottom)
+                        this.background = ContextCompat.getDrawable(context, background)
                     } as T
                 }
                 IMAGE_BUTTON -> { /*ImageButton*/
@@ -109,15 +117,17 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                         }
                         /*gravity = layout_centerVertical 위치 정렬 - 이상하게 안됨 일단 미구현*/
                         this.setImageResource(imageId)    /*사진도 나중에 구현*/
-                        this.background = ContextCompat.getDrawable(context,background)
+                        this.background = ContextCompat.getDrawable(context, background)
                         adjustViewBounds = true
                     } as T
                 }
                 LINE -> {   /*line*/
                     result = View(context).apply {
                         when (directionHorizontal) {    /*true 면 가로선 (height 가 6)*/
-                            true -> layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,6)
-                            false -> layoutParams = LinearLayout.LayoutParams(6,ViewGroup.LayoutParams.MATCH_PARENT)
+                            true -> layoutParams =
+                                LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 6)
+                            false -> layoutParams =
+                                LinearLayout.LayoutParams(6, ViewGroup.LayoutParams.MATCH_PARENT)
                         }
                         setBackgroundColor(     /*배경 색 설정*/
                             ContextCompat.getColor(
@@ -128,7 +138,7 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                     } as T
                 }
                 CALENDAR -> {
-                    result = MaterialCalendarView(context).apply{
+                    result = MaterialCalendarView(context).apply {
                         state().edit()
                             .setFirstDayOfWeek(Calendar.SUNDAY)
                             .setMinimumDate(CalendarDay.from(2017, 0, 1))
@@ -138,10 +148,10 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                     } as T
                 }
                 SPINNER -> {
-                    val data : Array<String> = context.getResources().getStringArray(R.array.time_array)
-                    val adapter : ArrayAdapter<String>  = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,data)
-
-                    result = Spinner(context).apply{
+                    val data: Array<String> = context.getResources().getStringArray(list)
+                    val adapter: ArrayAdapter<String> =
+                        ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, data)
+                    result = Spinner(context).apply {
                         layoutParams = LinearLayout.LayoutParams(
                             width,
                             height
@@ -149,7 +159,7 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                             if (weight != 0f)
                                 this.weight = weight
                         }
-                        ListView(context).apply{
+                        ListView(context).apply {
                             layoutParams = LinearLayout.LayoutParams(
                                 width,
                                 height
