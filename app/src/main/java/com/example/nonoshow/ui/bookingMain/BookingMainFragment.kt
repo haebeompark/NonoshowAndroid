@@ -1,13 +1,14 @@
 package com.example.nonoshow.ui.bookingMain
 
 import android.os.Bundle
+import android.sax.EndElementListener
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.LinearLayout
-import android.widget.FrameLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -52,15 +53,16 @@ class BookingMainFragment : Fragment() {
     private fun createBlocks(LL : LinearLayout = LinearLayoutBookingMain,numberOfBlock : Int = 10) {
         for (i in 1.. numberOfBlock){createABlock(LL)}
     }
-    private fun createABlock(LL : LinearLayout = LinearLayoutBookingMain): FrameLayout {
+    private fun createABlock(LL : LinearLayout = LinearLayoutBookingMain): LinearLayout {
         val context = MainActivity.contextForList!!
-        val tableRow : FrameLayout
-        tableRow = FrameLayout(context).apply {
+        val tableRow : LinearLayout
+        tableRow = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
             layoutParams = ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 500
             )
-            val param = layoutParams as ViewGroup.MarginLayoutParams    /*패딩설정*/
+            val param = layoutParams as ViewGroup.MarginLayoutParams    /*마진설정*/
             param.setMargins(24, 10, 24, 10)
             layoutParams = param                                        /*패딩설정 끝*/
             setBackgroundColor(
@@ -71,26 +73,30 @@ class BookingMainFragment : Fragment() {
             )  /*backgroundColor 설정*/
         }
         val textView = TextView(context).apply {
-            gravity = android.R.attr.layout_centerVertical /*위치 정렬*/
             text = "매장 이름" /*  이곳에 매장의 이름이 들어와야 함  */
-            textSize = 30f
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+            textSize = 24f
+            layoutParams = LinearLayout.LayoutParams(
+                0,
                 ViewGroup.LayoutParams.MATCH_PARENT
-            )
+            ).apply{
+                weight = .67f
+            }
+            val param = layoutParams as ViewGroup.MarginLayoutParams    /*마진설정*/
+            param.setMargins(64,32,64,64)
         }
         val view = View(context).apply {
-            layoutParams = LinearLayoutCompat.LayoutParams(
+            layoutParams = ViewGroup.LayoutParams(
                 0,
-                0,
-                1f
+                0
             )
         }
-        val imageButton = ImageButton(context).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                450,
+        val imageButton = View(context).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                0,
                 450
-            )
+            ).apply{
+                weight = .33f
+            }
             /*gravity = layout_centerVertical 위치 정렬 - 이상하게 안됨 일단 미구현*/
             background = ContextCompat.getDrawable(
                 context,
