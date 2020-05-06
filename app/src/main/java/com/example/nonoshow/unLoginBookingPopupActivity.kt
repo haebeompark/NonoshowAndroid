@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
+import com.example.nonoshow.MyApplication.Companion.bookingTextView
 import kotlinx.android.synthetic.main.unlogin_popup.*
 
 
@@ -19,7 +20,9 @@ class unLoginBookingPopupActivity : Activity() {
             intent = Intent()
             intent.putExtra("result", "Close Popup")
             setResult(RESULT_OK, intent)
-
+            bookingTextView!!.text = "예약하기"
+            bookingTextView!!.setOnClickListener{/*비회원이지만 개인정보를 입력한자의 예약 실행*/
+            }
             //액티비티(팝업) 닫기
             finish()
         }

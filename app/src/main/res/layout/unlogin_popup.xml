@@ -79,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="비회원으로 예약하기"
+            android:text="비회원 로그인"
             android:background="@color/colorLogo"
             android:textColor="@color/colorWhite"
             android:textSize="18sp"

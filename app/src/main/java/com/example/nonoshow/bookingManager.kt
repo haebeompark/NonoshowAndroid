@@ -12,7 +12,9 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import com.example.nonoshow.MyApplication.Companion.bookingTextView
 import com.example.nonoshow.MyApplication.Companion.createView
+import com.example.nonoshow.MyApplication.Companion.isLogined
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.booking_manager.*
 
@@ -192,7 +194,7 @@ class bookingManager : AppCompatActivity() {
             backGroundColor = R.color.colorLightGray)) /*가로선*/
         LL.addView(createView<TextView>(
             type = MyApplication.TEXT_VIEW,
-            text = when(MyApplication.isLogined){
+            text = when(isLogined){
                 true->"예약하기"
                 false->"비회원 예약하기"
             },
@@ -205,8 +207,17 @@ class bookingManager : AppCompatActivity() {
             height = 300
         ).apply{
             this!!.setOnClickListener{
-                val intent = Intent(context,unLoginBookingPopupActivity::class.java)
-                startActivity(intent)
+                when(isLogined){
+                    true->{/*이미 로그인 되었을 경우*/
+
+                    }
+                    false->{    /*비로그인상태일경우*/
+                        bookingTextView = this
+                        val intent = Intent(context,unLoginBookingPopupActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
             }
         })
     }
