@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException
 
 class EthereumServiceKt {
     companion object {
-        private val url = "https://ropsten.infura.io/v3/4b06de7f86264b748a0e78ed57222891"
+        private val url = "https://ropsten.infura.io/v3/4b06de7f86264b748a0e78ed57222891"   /*무료로 제공받은 녀석 test용url*/
         private val contractAddress = "0x884829e64A5D52653A84d1822650A61eb2E7aA7A"
         private val address = "0x9f9177a5fCf6AA5b7B5Da852fD8b6154c93cF7E8"
 
