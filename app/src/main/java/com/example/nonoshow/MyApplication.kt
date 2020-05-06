@@ -3,14 +3,13 @@ package com.example.nonoshow
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.CalendarMode
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.*
 import java.util.*
 
 class MyApplication : Application() { /*하나의 인스턴스를 가지는 클래스*/
@@ -160,6 +159,11 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                             .setMaximumDate(CalendarDay.from(2030, 11, 31))
                             .setCalendarDisplayMode(CalendarMode.MONTHS)
                             .commit()
+                        setOnDateChangedListener { widget, date, selected ->
+                            run{
+                                Log.i("calendar", date.toString())
+                            }
+                        }  /*날짜가 선택됐을 때*/
                     } as T
                 }
                 SPINNER -> {

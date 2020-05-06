@@ -78,7 +78,7 @@ class bookingManager : AppCompatActivity() {
             textColor = R.color.colorWhite
         ))
 
-        do{
+        run{
             val textGroup0: LinearLayout? = createView(
                 type = MyApplication.LINEAR_LAYOUT,
                 directionHorizontal = true  /*가로*/,
@@ -136,7 +136,7 @@ class bookingManager : AppCompatActivity() {
                 )
             )
             LL.addView(textGroup0)
-        }while(false)/*예약시각 선택 가로LinearLayout*/
+        }/*예약시각 선택 가로LinearLayout*/
 
         LL.addView(createView<View>(
             type = MyApplication.LINE,
@@ -154,7 +154,7 @@ class bookingManager : AppCompatActivity() {
             textColor = R.color.colorWhite
         ))
 
-        do {
+        run {
             val textGroup1: LinearLayout? = createView(
                 type = MyApplication.LINEAR_LAYOUT,
                 directionHorizontal = true  /*가로*/,
@@ -183,7 +183,7 @@ class bookingManager : AppCompatActivity() {
                 )
             )
             LL.addView(textGroup1)
-        }while(false)/*예약인원 선택 가로LinearLayout*/
+        }/*예약인원 선택 가로LinearLayout*/
 
         LL.addView(createView<View>(
             type = MyApplication.LINE,
