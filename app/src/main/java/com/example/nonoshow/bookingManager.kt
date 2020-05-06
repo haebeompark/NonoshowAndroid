@@ -1,6 +1,7 @@
 /*예약하기를 눌렀을 때 나오는 레이아웃을 컨트롤하는 클래스*/
 package com.example.nonoshow
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -202,6 +203,11 @@ class bookingManager : AppCompatActivity() {
             textAlignCenter = true,
             textColor = R.color.colorPrimary,
             height = 300
-        ))
+        ).apply{
+            this!!.setOnClickListener{
+                val intent = Intent(context,unLoginBookingPopupActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

@@ -30,6 +30,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <!-- 팝업 Activity -->
+        <activity android:name=".unLoginBookingPopupActivity" android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>
