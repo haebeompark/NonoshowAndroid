@@ -57,8 +57,16 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
             imageId: Int = R.color.colorWhite,
             background: Int = backGroundColor,
             textColor: Int = android.R.color.black,
-            list : Int = R.array.time_array,
-            textAlignCenter : Boolean = false
+            textAlignCenter : Boolean = false,
+            startNum : Int = 0,
+            endNum : Int = 24,
+            list: Array<String> = Array(endNum-startNum+1/*배열크기*/){""}.apply{   /*list를 직접 넣지않을경우 숫자로만 이루어진 아이템들을 설정*/
+                var count = 0
+                for (i in startNum..endNum) {
+                    this[count++] = (i).toString()
+                }
+            }
+
         ): T? {
             val context = contextForList!! /*context 문제*/
             var result: T = View(context) as T
@@ -155,9 +163,8 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                     } as T
                 }
                 SPINNER -> {
-                    val data: Array<String> = context.getResources().getStringArray(list)
                     val adapter: ArrayAdapter<String> =
-                        ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, data)
+                        ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, list)
                     result = Spinner(context).apply {
                         layoutParams = LinearLayout.LayoutParams(
                             width,
