@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_sign_in" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_booking"
         android:name="com.example.nonoshow.ui.bookingMain.BookingMainFragment"
         android:label="@string/menu_booking_main"
         tools:layout="@layout/fragment_booking_main" />

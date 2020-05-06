@@ -15,7 +15,6 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
-import android.content.Context
 import com.example.nonoshow.MyApplication.Companion.contextForList
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +36,7 @@ Log.i("set","created")
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_search_by_phoneNum, R.id.nav_signIn, R.id.nav_slideshow
+                R.id.nav_search_by_phoneNum, R.id.nav_signIn, R.id.nav_booking
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

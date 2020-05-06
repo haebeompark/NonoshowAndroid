@@ -13,7 +13,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.example.nonoshow.MainActivity.Companion.changeState
 import com.example.nonoshow.MyApplication
 import com.example.nonoshow.MyApplication.Companion.trySignIn
 import com.example.nonoshow.R
@@ -63,7 +62,7 @@ Log.i("PW",MyApplication.PW)
 
             trySignIn(id, pw)
 
-            it.findNavController().navigate(R.id.nav_search_by_phoneNum)    /*fragment 전환*/
+            it.findNavController().navigate(R.id.nav_booking)    /*fragment 전환*/
         }
         signUp.setOnClickListener{
             MyApplication.isLogined = false
