@@ -149,7 +149,7 @@ class BookingMainFragment : Fragment() {
                 type = TEXT_VIEW,
                 text = "상호는 소담으로 변경되었으며 삼계탕과백숙 \n" +
                         "능이.전복.들깨일반 삼계탕이며 백숙은오리와닭 \n" +
-                        "백숙은 예약해야가능합니댜 삼계탕은 바로가능합니다\n주소 : 경기도 시흥시 장곡동 658-2", /* 간단한 설명  */
+                        "백숙은 예약해야가능합니다 삼계탕은 바로가능합니다\n주소 : 경기도 시흥시 장곡동 658-2", /* 간단한 설명  */
                 textColor = R.color.colorGray140,
                 textSize = 16f,
                 width =  ViewGroup.LayoutParams.MATCH_PARENT,
