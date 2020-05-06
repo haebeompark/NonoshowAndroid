@@ -15,14 +15,14 @@ import java.util.*
 
 class MyApplication : Application() { /*하나의 인스턴스를 가지는 클래스*/
     companion object {
-        val LINEAR_LAYOUT = 1004
-        val TEXT_VIEW = 1015
-        val IMAGE_BUTTON = 1026
-        val LINE = 1037
-        val CALENDAR = 1048
-        val SPINNER = 1059
-        val DEFAULT = 8000
-        val LOGINED : Int = 0
+        const val LINEAR_LAYOUT = 1004
+        const val TEXT_VIEW = 1015
+        const val IMAGE_BUTTON = 1026
+        const val LINE = 1037
+        const val CALENDAR = 1048
+        const val SPINNER = 1059
+        const val DEFAULT = 8000
+        const val LOGINED = 0
         @SuppressLint("StaticFieldLeak")
         var contextForList: Context? = null
         var state = DEFAULT /*내 상태 저장*/
@@ -34,7 +34,7 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
         }
 
         /*static at Kotlin*/
-        var ID = "default" /*일시적 사용 : 보안 취약 * 제거될코드?*/
+        var ID = "default"
         var PW = "default"
         var isLogined = false
         var loginToken = "" /*서버에서 암호화해서 보내준 녀석을 저장<나중에 업데이트>*/
@@ -187,8 +187,8 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
         }
 
         /******
-        * 이더리움 함수 이름 custSignIn
-        *******/
+         *이더리움 함수 이름 custSignIn
+         *******/
         fun trySignIn(id : String ="",pw : String="") : String{ /*이더리움으로 부터 "client"->상태 고객 고유 ID와 true값을 받아 고유ID를 반환함*/
 
             MainActivity.changeState(ID, LOGINED)/*로그인 성공시 상태를 변경하며, 닉네임설정*/

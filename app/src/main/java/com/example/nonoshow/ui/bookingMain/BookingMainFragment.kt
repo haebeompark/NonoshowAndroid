@@ -54,7 +54,7 @@ class BookingMainFragment : Fragment() {
         return root
     }
 
-    private fun createBlocks(LL: LinearLayout = LinearLayoutBookingMain, numberOfBlock: Int = 10) {
+    private fun createBlocks(LL: LinearLayout = LinearLayoutBookingMain, numberOfBlock: Int = 3) {
         /*create Fragment or loadMore 할 경우 실행됨*/
         for (i in 1..numberOfBlock) {
             createABlock(LL)
@@ -139,12 +139,24 @@ class BookingMainFragment : Fragment() {
                 backGroundColor = R.color.colorGray207)) /*가로선*/
             info.addView(createView<ImageButton>(  /*사진 추가*/
                 type = IMAGE_BUTTON,
-                imageId = R.drawable.test_photo_1
+                imageId = R.drawable.menu_example
             ))
             info.addView(createView<View>(
                 type = LINE,
                 directionHorizontal = true,
-                backGroundColor = R.color.colorPrimaryDark)) /*가로선*/
+                backGroundColor = R.color.colorGray207)) /*가로선*/
+            info.addView(createView<TextView>(
+                type = TEXT_VIEW,
+                text = "상호는 소담으로 변경되었으며 삼계탕과백숙 \n" +
+                        "능이.전복.들깨일반 삼계탕이며 백숙은오리와닭 \n" +
+                        "백숙은 예약해야가능합니댜 삼계탕은 바로가능합니다\n주소 : 경기도 시흥시 장곡동 658-2", /* 간단한 설명  */
+                textColor = R.color.colorGray140,
+                textSize = 16f,
+                width =  ViewGroup.LayoutParams.MATCH_PARENT,
+                height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                marginLeft = 64,
+                marginVertical = 32
+            ))
             /**info.addView(createView<TextView>(
                 type = TEXT_VIEW,
                 text = "예약날짜 선택",

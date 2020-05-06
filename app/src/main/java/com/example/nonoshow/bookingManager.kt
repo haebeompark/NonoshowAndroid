@@ -59,7 +59,7 @@ class bookingManager : AppCompatActivity() {
             marginTop = 32,
             textColor = R.color.colorWhite
         ))
-        LL.addView(createView<MaterialCalendarView>(
+        LL.addView(createView<MaterialCalendarView>(    /*달력 생성*/
             type = MyApplication.CALENDAR
         ))
         LL.addView(createView<View>(
@@ -78,52 +78,65 @@ class bookingManager : AppCompatActivity() {
             textColor = R.color.colorWhite
         ))
 
-        /*******************예약시각 선택********************/
-        val textGroup0 :LinearLayout? = createView(
-            type = MyApplication.LINEAR_LAYOUT,
-            directionHorizontal = true  /*가로*/,
-            marginHorizontal = 80
-        )
-        textGroup0!!.addView(createView<Spinner>(
-            type = MyApplication.SPINNER,
-            width = 0,
-            height = ViewGroup.LayoutParams.WRAP_CONTENT,
-            weight = .4f,
-            startNum = 1,
-            endNum = 24
-        ))
-        textGroup0.addView(createView<TextView>(
-            type = MyApplication.TEXT_VIEW,
-            text = "시",
-            textSize = 24f,
-            textColor = R.color.colorPrimary,
-            width = 0,
-            height = ViewGroup.LayoutParams.WRAP_CONTENT,
-            weight = .1f,
-            marginLeft = 40,
-            marginTop = 8
-        ))
-        textGroup0.addView(createView<Spinner>(
-            type = MyApplication.SPINNER,
-            width = 0,
-            height = ViewGroup.LayoutParams.WRAP_CONTENT,
-            weight = .4f,
-            startNum = 0,
-            endNum = 59
-        ))
-        textGroup0.addView(createView<TextView>(
-            type = MyApplication.TEXT_VIEW,
-            text = "분",
-            textSize = 24f,
-            textColor = R.color.colorPrimary,
-            width = 0,
-            height = ViewGroup.LayoutParams.WRAP_CONTENT,
-            weight = .1f,
-            marginLeft = 40,
-            marginTop = 8
-        ))
-        LL.addView(textGroup0)
-        /***************************************************/
+        do{
+            val textGroup0: LinearLayout? = createView(
+                type = MyApplication.LINEAR_LAYOUT,
+                directionHorizontal = true  /*가로*/,
+                marginHorizontal = 80
+            )
+            textGroup0!!.addView(
+                createView<Spinner>(
+                    type = MyApplication.SPINNER,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .3f,
+                    list = contextForList!!.resources.getStringArray(R.array.time_array)    /*오전, 오후*/
+                )
+            )
+            textGroup0.addView(
+                createView<Spinner>(
+                    type = MyApplication.SPINNER,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .3f,
+                    startNum = 1,       /*시각 1시 ~ 12시*/
+                    endNum = 12
+                )
+            )
+            textGroup0.addView(
+                createView<TextView>(
+                    type = MyApplication.TEXT_VIEW,
+                    text = "시",
+                    textSize = 18f,
+                    textColor = R.color.colorPrimary,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .05f
+                )
+            )
+            textGroup0.addView(
+                createView<Spinner>(
+                    type = MyApplication.SPINNER,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .3f,
+                    startNum = 0,
+                    endNum = 59
+                )
+            )
+            textGroup0.addView(
+                createView<TextView>(
+                    type = MyApplication.TEXT_VIEW,
+                    text = "분",
+                    textSize = 18f,
+                    textColor = R.color.colorPrimary,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .05f
+                )
+            )
+            LL.addView(textGroup0)
+        }while(false)/*예약시각 선택 가로LinearLayout*/
 
         LL.addView(createView<View>(
             type = MyApplication.LINE,
@@ -141,32 +154,37 @@ class bookingManager : AppCompatActivity() {
             textColor = R.color.colorWhite
         ))
 
-        /********************예약인원 선택********************/
-        val textGroup1 :LinearLayout? = createView(
-            type = MyApplication.LINEAR_LAYOUT,
-            directionHorizontal = true  /*가로*/,
-            marginHorizontal = 80
-        )
-        textGroup1!!.addView(createView<TextView>(
-            type = MyApplication.TEXT_VIEW,
-            text = "예약인원 : ",
-            textSize = 24f,
-            textColor = R.color.colorPrimary,
-            width = 0,
-            weight = .5f,
-            marginLeft = 40,
-            marginTop = 8
-        ))
-        textGroup1.addView(createView<Spinner>(
-            type = MyApplication.SPINNER,
-            startNum = 1,
-            endNum = 30,
-            width =  0,
-            height = ViewGroup.LayoutParams.WRAP_CONTENT,
-            weight = .5f
-        ))
-        /*******************************************************/
-        LL.addView(textGroup1)
+        do {
+            val textGroup1: LinearLayout? = createView(
+                type = MyApplication.LINEAR_LAYOUT,
+                directionHorizontal = true  /*가로*/,
+                marginHorizontal = 80
+            )
+            textGroup1!!.addView(
+                createView<TextView>(
+                    type = MyApplication.TEXT_VIEW,
+                    text = "예약인원 : ",
+                    textSize = 24f,
+                    textColor = R.color.colorPrimary,
+                    width = 0,
+                    weight = .5f,
+                    marginLeft = 40,
+                    marginTop = 8
+                )
+            )
+            textGroup1.addView(
+                createView<Spinner>(
+                    type = MyApplication.SPINNER,
+                    startNum = 1,
+                    endNum = 30,
+                    width = 0,
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT,
+                    weight = .5f
+                )
+            )
+            LL.addView(textGroup1)
+        }while(false)/*예약인원 선택 가로LinearLayout*/
+
         LL.addView(createView<View>(
             type = MyApplication.LINE,
             directionHorizontal = true,
