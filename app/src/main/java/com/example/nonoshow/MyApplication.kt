@@ -1,6 +1,8 @@
 package com.example.nonoshow
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +21,11 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
         val LINE = 1037
         val CALENDAR = 1048
         val SPINNER = 1059
+        val DEFAULT = 8000
+        val LOGINED : Int = 0
+        @SuppressLint("StaticFieldLeak")
+        var contextForList: Context? = null
+        var state = DEFAULT /*내 상태 저장*/
         fun logout() {
             ID = "default"
             PW = "default"
@@ -53,7 +60,7 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
             list : Int = R.array.time_array,
             textAlignCenter : Boolean = false
         ): T? {
-            val context = MainActivity.contextForList!! /*context 문제*/
+            val context = contextForList!! /*context 문제*/
             var result: T = View(context) as T
             when (type) {
                 LINEAR_LAYOUT -> {   /*LL*/
@@ -170,6 +177,26 @@ class MyApplication : Application() { /*하나의 인스턴스를 가지는 클�
                 }
             }
             return result
+        }
+
+        /******
+        * 이더리움 함수 이름 custSignIn
+        *******/
+        fun trySignIn(id : String ="",pw : String="") : String{ /*이더리움으로 부터 "client"->상태 고객 고유 ID와 true값을 받아 고유ID를 반환함*/
+
+            MainActivity.changeState(ID, LOGINED)/*로그인 성공시 상태를 변경하며, 닉네임설정*/
+            state = LOGINED
+            var result = "err"
+
+
+            return result
+        }
+
+        /******
+         * 이더리움 함수 이름 custSignIn
+         *******/
+        fun trySignUp(phoneNumber : String, name : String, id : String, pw : String) : Boolean {    /*회원가입*/
+            return false
         }
     }
 }

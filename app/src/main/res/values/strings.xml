@@ -26,4 +26,5 @@
     <string name="PW_check">비밀번호확인</string>
     <string name="signout">로그아웃</string>
     <string name="text_load_more">load more</string>
+    <string name="text_booking">예약하기</string>
 </resources>

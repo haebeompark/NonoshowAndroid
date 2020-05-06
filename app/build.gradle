@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.nonoshow"
@@ -41,4 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'org.web3j:core:4.2.0-android'
+    implementation group: 'org.web3j',name:'abi',version:'4.5.17'
+    implementation 'org.slf4j:slf4j-simple:1.6.1'
 }

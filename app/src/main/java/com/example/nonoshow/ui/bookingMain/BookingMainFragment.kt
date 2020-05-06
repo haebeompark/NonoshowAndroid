@@ -1,5 +1,6 @@
 package com.example.nonoshow.ui.bookingMain
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +11,15 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.nonoshow.MainActivity
-import com.example.nonoshow.MyApplication
+import com.example.nonoshow.*
 import com.example.nonoshow.MyApplication.Companion.CALENDAR
 import com.example.nonoshow.MyApplication.Companion.IMAGE_BUTTON
 import com.example.nonoshow.MyApplication.Companion.LINE
 import com.example.nonoshow.MyApplication.Companion.LINEAR_LAYOUT
 import com.example.nonoshow.MyApplication.Companion.SPINNER
 import com.example.nonoshow.MyApplication.Companion.TEXT_VIEW
+import com.example.nonoshow.MyApplication.Companion.contextForList
 import com.example.nonoshow.MyApplication.Companion.createView
-import com.example.nonoshow.R
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.fragment_booking_main.*
 
@@ -33,7 +33,7 @@ class BookingMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createBlocks(LinearLayoutBookingMain)
-        val loadMore = TextView(MainActivity.contextForList)
+        val loadMore = TextView(contextForList)
         loadMore.text = resources.getString(R.string.text_load_more)  /*load more*/
         loadMore.setOnClickListener {
             /*뷰 블럭을 더 생성*/
@@ -145,7 +145,7 @@ class BookingMainFragment : Fragment() {
                 type = LINE,
                 directionHorizontal = true,
                 backGroundColor = R.color.colorPrimaryDark)) /*가로선*/
-            info.addView(createView<TextView>(
+            /**info.addView(createView<TextView>(
                 type = TEXT_VIEW,
                 text = "예약날짜 선택",
                 backGroundColor = R.color.colorPrimary,
@@ -218,16 +218,14 @@ class BookingMainFragment : Fragment() {
             ))
             /***************************************/
             info.addView(textGroup)
+            **/
             info.addView(createView<View>(
                 type = LINE,
                 directionHorizontal = true,
                 backGroundColor = R.color.colorLightGray)) /*가로선*/
             info.addView(createView<TextView>(
                 type = TEXT_VIEW,
-                text = when(MyApplication.isLogined){
-                    true->"예약하기"
-                    false->"비회원 예약하기"
-                },
+                text = "예약하기",
                 textSize = 20f,
                 marginHorizontal = 256,
                 marginVertical = 64,
@@ -235,7 +233,12 @@ class BookingMainFragment : Fragment() {
                 textAlignCenter = true,
                 textColor = R.color.colorPrimary,
                 height = 300
-            ))
+            ).apply{
+                this!!.setOnClickListener{
+                    val intent = Intent(context,bookingManager::class.java)
+                    startActivity(intent)
+                }
+            })
 
             block.addView(info) /*블록에 정보를 붙임*/
             tableRow.setOnClickListener{/*위쪽 테이블을 눌렀을경우 INFO 창 제거를 위해*/

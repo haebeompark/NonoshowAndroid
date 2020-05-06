@@ -10,18 +10,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.example.nonoshow.MainActivity
+import com.example.nonoshow.MainActivity.Companion.changeState
 import com.example.nonoshow.MyApplication
+import com.example.nonoshow.MyApplication.Companion.trySignIn
 import com.example.nonoshow.R
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignInFragment : Fragment() {
 
     private lateinit var signInViewModel: SignInViewModel
-    private val LOGIN : Int = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         MyApplication.isLogined = false
@@ -50,14 +50,18 @@ class SignInFragment : Fragment() {
                 }
             }
         }
+
+        /*signIn 버튼 클릭시 MyApplication클래스의 trySignIn함수를 불러오게 되고 이더리움 통신을 위한 데이터 또는  토큰을 받아온다*/
         signIn.setOnClickListener{
             MyApplication.isLogined = true
             MyApplication.ID = textID.text.toString()
 Log.i("ID",MyApplication.ID)
             MyApplication.PW = textPW.text.toString()
 Log.i("PW",MyApplication.PW)
+            val id = editText_ID.text.toString()
+            val pw = editText_PW.text.toString()
 
-            MainActivity.changeState(MyApplication.ID, LOGIN)/*로그인하며 닉네임설정*/
+            trySignIn(id, pw)
 
             it.findNavController().navigate(R.id.nav_search_by_phoneNum)    /*fragment 전환*/
         }

@@ -16,10 +16,14 @@ import android.view.Menu
 import android.view.View
 import android.widget.TextView
 import android.content.Context
+import com.example.nonoshow.MyApplication.Companion.contextForList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
+        /*Thread {
+            EthereumServiceKt.setConnectEther()     /*이더리움 연결*/
+        }.start()*/
 Log.i("set","created")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -78,8 +82,6 @@ Log.i("set","restart!")
         var nickname: TextView? = null
         @SuppressLint("StaticFieldLeak")
         var signOutText: TextView? = null
-        @SuppressLint("StaticFieldLeak")
-        var contextForList: Context? = null
 
         fun changeState(data: String, index: Int) {
             when (index) {
