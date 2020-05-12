@@ -17,10 +17,19 @@ import com.example.nonoshow.MyApplication.Companion.createView
 import com.example.nonoshow.MyApplication.Companion.isLogined
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.booking_manager.*
-
+import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.util.Log
+import android.util.Log.*
+import java.util.*
+import android.widget.DatePicker
+import androidx.fragment.app.FragmentActivity
 
 
 class bookingManager : AppCompatActivity() {
+    private var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
+    private val TAG : String = "bookingManager"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +44,7 @@ class bookingManager : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         /**                         **/
     }
+
     override fun onOptionsItemSelected(item : MenuItem) : Boolean  {
         /*툴바에 뒤로가기버튼기능을 핸드폰의 뒤로가기버튼의 동작과 같도록 함*/
         when (item.itemId){
@@ -62,9 +72,49 @@ class bookingManager : AppCompatActivity() {
             marginTop = 32,
             textColor = R.color.colorWhite
         ))
-        LL.addView(createView<MaterialCalendarView>(    /*달력 생성*/
-            type = MyApplication.CALENDAR
-        ))
+        LL.addView(createView<TextView>(    /*날짜 선택 TextView 클릭시 DataPickerDialog 팝업생성*/
+            type = MyApplication.TEXT_VIEW,
+            text = "예약 날짜 선택",
+            textSize = 20f,
+            marginHorizontal = 256,
+            marginVertical = 64,
+            background = R.drawable.edit_text_customize_primary,
+            textAlignCenter = true,
+            textColor = R.color.colorPrimary,
+            height = 300
+        ).apply{
+            val cal : Calendar  = Calendar.getInstance()    /*초기설정*/
+            var y = cal.get(Calendar.YEAR)
+            var m = cal.get(Calendar.MONTH)
+            var d = cal.get(Calendar.DAY_OF_MONTH)
+            var monthL = m + 1
+            var date = "$y" + "년 " + "$monthL" + "월 "+ "$d" + "일"
+
+            mDateSetListener =
+                DatePickerDialog.OnDateSetListener { dataPicker: DatePicker,year, month, day ->
+                    y = year
+                    m = month
+                    d = day
+                    monthL = m + 1
+                    d(TAG, "onDateSet: mm/dd/yyy: $monthL/$day/$year")
+                    date = "$year" + "년 " + "$monthL" + "월 "+ "$day" + "일"
+                    this!!.text = date
+                }
+
+            this!!.setOnClickListener{
+                this.text = date
+                val dialog = DatePickerDialog(
+                    context,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    mDateSetListener,
+                    y,m,d)
+                val window = dialog.window
+                window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.show()
+
+
+            }
+        })
         LL.addView(createView<View>(
             type = MyApplication.LINE,
             directionHorizontal = true,
