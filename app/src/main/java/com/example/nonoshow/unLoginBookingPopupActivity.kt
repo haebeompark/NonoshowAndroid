@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.unlogin_popup.*
 
 class unLoginBookingPopupActivity : Activity() {
     override fun onCreate(savedInstanceState : Bundle?) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState)
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.unlogin_popup)
